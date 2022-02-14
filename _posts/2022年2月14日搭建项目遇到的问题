@@ -1,0 +1,24 @@
+[ERROR] Some problems were encountered while processing the POMs
+
+'dependencies.dependency.version' for xxx:xxx:jar is missing.
+
+Project build error: 'dependencies.dependency.version' for xxx:xxx:jar is missing.
+出现这个问题的时候，首先排查父工程包里的<dependencyManagement>标签下的
+<groupId>、<artifactId>、<version>是否正确，我出现这个问题的原因是<groupId>没有配置正确导致
+
+父工程的<packaging>pom</packaging>这个标签一般创建项目的时候会创建只要不是手动删除就不同特意去检查这个是否配置
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-dependencies</artifactId>
+    <version>${spring.boot.version}</version>
+    <type>pom</type>
+    <scope>import</scope>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-dependencies</artifactId>
+    <version>${spring.cloud.version}</version>
+    <type>pom</type>
+    <scope>import</scope>
+  </dependency>
