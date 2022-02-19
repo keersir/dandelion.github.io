@@ -1,0 +1,60 @@
+对于数组的排序：将数组从小到大排序：
+先定义一个数组： int[] arr = {2,1,5,4,6,8,9,7,3,6,1,2,4,5,6,5}
+// 先判断数组是否为空或者
+if(null == arr || arr.length() = 1){
+	return ;
+}
+// 选择排序
+for(int i = 0; i < arr.leng();i++) {
+	int minValue = i;
+	for (int j = i + 1 ; j < arr.length() ; j++ ) {
+		minValue = arr[j] < arr[minValue] ? j : minValue;
+	}	
+	// 交换
+	int value = arr[i];
+	arr[i] = arr[minValue];
+	arr[minValue] = value;
+}
+这个代码的逻辑就是从首位开始依次比较后面所有的位置的数的大小，一旦发现首位的数比当前某个位置的数大，
+那么就记录这个较小位置的数的位置，如果后面还有数，就拿这个较小位置的数去进行比较，如果没有，将这个位置与首位做交换，
+那么首位的数就是最小的数，然后从第二位开始比较，那么第二位的数就是第二小的数，依次进行直到比完就是一个从小到大的
+
+// 冒泡排序
+for(int n = arr.length() -1 ; n >= 0 ; n--){
+	for(int k = 0,k <= n -1; k++ ){
+		if(arr[k] > arr[k + 1]){
+			// 交换
+			int value = arr[k];
+			arr[k] = arr[n];
+			arr[n] = value;
+		}
+	}
+}
+这个代码的逻辑就是从首位开始，每次与它的后一个位置的数做比较，将较小的数排到前面，
+那么第一次循环过后，最后一位是最大的数，第二次循环过后，倒数第二位的数为第二大的数，依次进行
+
+// 插入排序
+for(int e = 1; e < arr.length(); e++){
+	int index = e;
+	while (index - 1 >= 0 && arr[index -1] > arr[index]){
+		// 交换
+		int value = arr[index -1];
+		arr[index -1] = arr[index];
+		arr[index] = value;
+		index --;
+	}
+}
+这个代码的逻辑就是从第二位开始，每次比较前面的所有的数，做排序，不从第一位开始的原因是只有一个数没有必要做排序；
+然后到循环结束，这个数组就是一个从小到大的有序数组
+
+//优化插入排序
+for(int i = 1; i < arr.length(); i++){
+	for (int index = i; index -1 >=0 && arr[index -1] > arr[index]; index--){
+		// 交换
+		int value = arr[index -1];
+		arr[index -1] = arr[index];
+		arr[index] = value;
+		index --;
+	}
+}
+这个代码的逻辑就是从第二位开始，每次倒叙比较前面两个数的大小，做排序，每次比较完标识-1，直到前面没有任何位置，然后这个进入到循环中的数就是需要交换顺序的数；
